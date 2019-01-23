@@ -1,0 +1,111 @@
+Ch. 1
+-----
+- Do package names support namespaces?
+  - Not exactly. Package names themselves don't, but similar to Python you can
+    group packages in directories as you see fit. Packages with the same name
+    can exist so long as they are in separate paths/folders.
+
+- What are the supported (or at least recommended) characters in a package name?
+  - From the Go blog:
+
+    | Good package names are short and clear. They are lower case, with no
+    | under_scores or mixedCaps. They are often simple nouns, such as:
+    |
+    | Abbreviate judiviously, but if abbreviating a package name makes it
+    | ambiguous or unclear, don't do it.
+    |
+    | Don't steal good names from the user. Avoid giving a package a name that
+    | is commonly used in client code. For example, the buffered I/O package is
+    | called 'bufio', but 'buf', since 'buf' is a good variable name for a
+    | buffer.
+
+
+- Why is it that the package declaration ('package main') doesn't conflict with
+  the funtion name ('func main() ...')? Is it the keywords that precede them?
+
+godoc command
+-------------
+
+Ex. `godoc fmt Println` prints the documentation for the `Println` function in
+the `fmt` package.
+
+Ch. 1 exercises
+---------------
+1. What is whitespace?
+  - The same thing as in pretty much every programming language. It separates
+    statements from one another. It helps things be more readable. It's largely
+    for humans.
+2. What is a comment? What are the two ways of writing a comment?
+  - Text that the compiler / interpreter ignores. It's used to help humans.
+  - // This is a single-line comment
+  - /* This could be a multi-line comment. */
+3. Out program began with `package main`. What would the files in the `fmt
+package` begin with?
+  - `package fmt`
+4. We used the `Println` function defined in the `fmt` package. If you wanted to
+use the `Exit` function from the `os` package, what would you need to do?
+  - Import the `os` package.
+  - import os
+5. Modify the program we wrote so that instead of printing 'Hello, World' it
+prints 'Hello, my name is' followed by your name.
+  - See ch01/main-modified.go
+
+
+Ch. 2
+-----
+Types and tokens
+
+Philosophers sometimes make a distinction between types and tokens. For example,
+suppose you have a dog named Max. 'Max' is the token (a particular instance or
+member) and 'dog' is the type (the general concept). Dog or dogness describes a
+set of properties that all dogs have in common. Although oversimplistic, we
+might reason like this: all dogs have four legs, Max is a dog, therefore Max has
+four legs. Types in programming languages work in a similar way: all strings
+have a length, 'x' is a string, therefore 'x' has a length.
+
+In mathematics, we often talk about sets. For example, R (the set of all real
+numbers) or N (the set of all natural numbers). Each member of these sets shares
+properties with all the other members of the set. For instance, all natural
+numbers are associative: "for all natural numbers a, b, and c:
+  a + (b + c) = (a + b) + c   AND
+  a . (b . c) = (a . b) . c
+In this way, sets are similar to types in programming languages, because all the
+values of a particular type share certain properties.
+
+Standard types
+--------------
+
+Numbers
+- Integers
+  - signed and unsigned integers (uint8, uint16, int64, etc.) from 8-64 bits
+  - byte (same as int8)
+  - rune (same as int32)
+  - uint, int, and uintptr - these are machine dependent, because their size
+    depends on the type of architecture you are using
+- Floating point numbers (32 or 64 bit)
+  - float32, float64
+  - Typical caveats apply with floating-point math
+- Complex / imaginary numbers
+  - complex64, complex128
+- Special values
+  - NaN (not a number, such as 0/0)
+  - positive / negative infinity
+
+Arithmetic operators:
++, -, *, /, % (modulo)
+
+Strings
+- Can be created using double-quotes (") or backticks (`)
+  - " cannot contain newlines, but escape codes (e.g. "\n") is allowed
+  - ` can span multiple lines, works like heredocs, including treating leading
+    whitespace as significant.
+  - See ch02/strings.go
+
+Questions
+---------
+- When would I use the machine-specific integer types rather than specifying the
+  types?
+  - ???
+- How does type conversion work? E.g. if I type 1.0 + 2 do I get an integer or
+  floating-point result?
+  - ???
